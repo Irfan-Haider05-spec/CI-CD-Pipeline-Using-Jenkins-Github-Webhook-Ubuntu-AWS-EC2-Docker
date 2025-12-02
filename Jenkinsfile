@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME'
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-        stage('SDocker Container Run') {
+        stage('Docker Container Run') {
             steps {
                 sh '''
                     docker run -d -p ${PORT}:${PORT} --name $CONTAINER_NAME $IMAGE_NAME
